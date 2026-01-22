@@ -16,16 +16,19 @@ from matplotlib.animation import FuncAnimation
 # ------------------------------------------------------------
 # CONFIG
 # ------------------------------------------------------------
-session_id = 385
+#change the file video file ans session_id
+session_id = 383
 metadata_csv = "./markers/session1_complete_final_markers.csv"
-# video_file = "/ds/videos/nurse_2.0/videos_sync/1080p/session_1/383_all_cams.mp4"
-video_file = '385_all_cams_anonymized.mkv'
+video_file = "/ds/videos/nurse_2.0/videos_sync/1080p/session_1/383_all_cams.mp4"
+#video_file = '385_all_cams_anonymized.mkv'
 
+#will change according to the day session you want to process
 green_dir = Path("./sensors/D1/Green")
 blue_dir  = Path("./sensors/D1/Blue")
 
 Z_COL = "accelerometerAccelerationZ(G)"
 WINDOW_SEC = 5.0
+#need to adjust manually for different videos
 SENSOR_LAG_SEC = 1.5
 
 CHUNK_SIZE = 256          # frames per streaming chunk
@@ -86,6 +89,7 @@ def get_bounds(df, sid):
 
 sess_start, sess_end = get_bounds(session_df, session_id)
 
+#changes for sessions. Add starting time of the camera from the session
 video_start = pd.to_datetime("2023-11-27T12:15:46Z", utc=True)
 session_start = video_start + pd.to_timedelta(sess_start, unit="s")
 session_end   = video_start + pd.to_timedelta(sess_end, unit="s")
