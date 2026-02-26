@@ -22,6 +22,7 @@ parser.add_argument("--metadata_csv", type=str, default="./markers/session1_comp
 parser.add_argument("--green_dir", type=str, default="./sensors/D1/Green")
 parser.add_argument("--blue_dir", type=str, default="./sensors/D1/Blue")
 parser.add_argument("--out_video", type=str, default=None)
+parser.add_argument("--sensor_lag", type=float, default=0.7)
 
 args = parser.parse_args()
 
@@ -30,6 +31,7 @@ video_file = args.video_file
 metadata_csv = args.metadata_csv
 green_dir = Path(args.green_dir)
 blue_dir  = Path(args.blue_dir)
+sensor_lag = args.sensor_lag
 
 OUT_VIDEO = args.out_video if args.out_video is not None else f"session_{session_id}_stable.mkv"
 # ------------------------------------------------------------
@@ -48,7 +50,7 @@ Y_COL = "accelerometerAccelerationY(G)"
 Z_COL = "accelerometerAccelerationZ(G)"
 
 WINDOW_SEC = 5.0
-SENSOR_LAG_SEC = 1.5
+SENSOR_LAG_SEC = sensor_lag
 
 CHUNK_SIZE = 1024
 BATCH_PER_WORKER = 256
