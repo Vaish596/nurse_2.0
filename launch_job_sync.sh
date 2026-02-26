@@ -16,4 +16,4 @@ srun \
   --container-image=/netscratch/enroot/nvcr.io_nvidia_pytorch_23.04-py3.sqsh \
   --container-workdir="`pwd`" \
   --time=01-00:00 \
-  bash job.sh "$SESSION_ID" "$VIDEO_FILE"
+  bash job_sync.sh "$SESSION_ID" "$VIDEO_FILE"
